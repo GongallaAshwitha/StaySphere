@@ -1,0 +1,112 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container py-5" style="min-height:100vh;">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+
+      <div class="card p-4 shadow rounded-3">
+
+        <!-- Header -->
+        <h2 class="text-center text-danger mb-4">Create a New Listing</h2>
+
+        <!-- Form -->
+        <form method="POST" action="/listings" enctype="multipart/form-data" class="needs-validation" novalidate>
+          
+          <!-- Title -->
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="listing[title]" placeholder="Title" required>
+            <div class="invalid-feedback">Please enter a title.</div>
+          </div>
+
+          <!-- Image -->
+          <div class="mb-3">
+            <label for="image" class="form-label">Upload Listing Image</label>
+            <input type="file" class="form-control" id="image" name="listing[image]" required>
+            <div class="invalid-feedback">Please upload an image.</div>
+          </div>
+
+          <!-- Description -->
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="listing[description]" rows="4" placeholder="Description" required></textarea>
+            <div class="invalid-feedback">Please enter a description.</div>
+          </div>
+
+          <!-- Price and Location -->
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input type="number" class="form-control" id="price" name="listing[price]" placeholder="Price" required>
+              <div class="invalid-feedback">Please enter a price.</div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="location" class="form-label">Location</label>
+              <input type="text" class="form-control" id="location" name="listing[location]" placeholder="Location" required>
+              <div class="invalid-feedback">Please enter a location.</div>
+            </div>
+          </div>
+
+          <!-- Country -->
+          <div class="mb-3">
+            <label for="country" class="form-label">Country</label>
+            <input type="text" class="form-control" id="country" name="listing[country]" placeholder="Country" required>
+            <div class="invalid-feedback">Please enter a country.</div>
+          </div>
+
+          <!-- Category -->
+          <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select class="form-control" id="category" name="listing[category]" required>
+              <option value="">Select a category</option>
+              <option value="beach">Beach</option>
+              <option value="mountain">Mountain</option>
+              <option value="city">City</option>
+              <option value="camping">Camping</option>
+              <option value="pool">Pool</option>
+              <option value="farm">Farm</option>
+              <option value="luxury">Luxury</option>
+              <option value="villa">Villa</option>
+              <option value="treehouse">Treehouse</option>
+              <option value="lake">Lake</option>
+              <option value="cabin">Cabin</option>
+              <option value="island">Island</option>
+              <option value="desert">Desert</option>
+              <option value="arctic">Arctic</option>
+              <option value="historical">Historical</option>
+            </select>
+            <div class="invalid-feedback">Please select a category.</div>
+          </div>
+
+          <!-- Submit -->
+          <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-danger btn-lg">Add Listing</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const forms = document.querySelectorAll('.needs-validation');
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      const inputs = form.querySelectorAll('.form-control');
+      inputs.forEach(input => {
+        input.classList.remove('is-valid','is-invalid');
+        input.classList.add(input.checkValidity() ? 'is-valid' : 'is-invalid');
+      });
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    }, false);
+  });
+})();
+</script>

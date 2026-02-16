@@ -1,0 +1,14 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="row">
+  <div class="alert alert-danger col-6 offset-3" role="alert">
+    <h4>Error <%= err.statusCode %></h4>
+    <p><%= err.message %></p>
+  </div>
+</div>
+
+<% if (showPopup) { %>
+<script>
+    alert("<%= err.message %>");
+</script>
+<% } %>
